@@ -20,14 +20,13 @@ export default function TaskInput(props) {
     } 
 
     return (
-        <div>
+        <div id="inputContainer" className="flex" >
             <div id="inputWrapper">
-
-            <label htmlFor="taskInput"> Enter Task</label>
-            <input style={{border:'1px solid black'}} onChange={handleInput} value={inputVal} type="text" name="" id="taskInput" />
+            <label htmlFor="taskInput"></label>
+            <input className="w-100" placeholder="Enter task" style={{border:'1px solid black'}} onChange={handleInput} value={inputVal} type="text" name="" id="taskInput" />
             </div>
             <div id="addBtn">
-                <button onClick={buttonHandler} >+</button>
+                <button onClick={buttonHandler} className="bg-blue-400 w-7" >+</button>
             </div>
         </div>
     )

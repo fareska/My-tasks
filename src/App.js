@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      <div id="tasksContainer" className="bg-blue-400 h-20" >
+      <div id="tasksContainer" className="p-6 h-90 max-w-sm mx-auto bg-gray-500 rounded-xl shadow-md items-center space-x-4" >
         <h1>My Tasks List</h1>
         <TaskInput addTask={addTask} />
         <DeleteButton deleteTasks={deleteTasks} />
