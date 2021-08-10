@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import DeleteButton from './componenets/DeleteButton';
+import Modal from './componenets/Modal';
 import TaskInput from './componenets/TaskInput';
 import TasksContainer from './componenets/TasksContainer';
 
 function App() {
 
   const [tasks, setTasks] = useState([])
+
+  const [showModal, setShowModal] = useState(false)
 
   // useEffect(() => {
   //   localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -24,6 +27,7 @@ function App() {
     setTasks(tempTasks)
     localStorage.setItem('tasks', JSON.stringify(tempTasks))
   }
+
   
   const deleteTasks = (btnClicked) => {
     if (btnClicked === 'deleteAll') {
@@ -48,8 +52,9 @@ function App() {
       <div id="tasksContainer" className="p-6 h-90 max-w-sm mx-auto bg-gray-500 rounded-xl shadow-md items-center space-x-4" >
         <h1>My Tasks List</h1>
         <TaskInput addTask={addTask} />
-        <DeleteButton deleteTasks={deleteTasks} />
+        <DeleteButton showModal={setShowModal} deleteTasks={deleteTasks} />
         <TasksContainer completeTask={completeTask} tasks={tasks} />
+        { (showModal) ? <Modal hideModal={setShowModal}/> : null }
       </div>
     </div>
   );
