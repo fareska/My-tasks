@@ -13,7 +13,7 @@ function App() {
   // }, [tasks])
 
   useEffect(() => {
-    let locals = JSON.parse(localStorage.getItem('tasks' || '[]'))
+    let locals = JSON.parse(localStorage.getItem('tasks')) || []
     setTasks(locals)
   }, [])
 
