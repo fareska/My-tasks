@@ -1,19 +1,15 @@
-import { useState, useEffect } from 'react';
-import './App.css';
-import DeleteButton from './componenets/DeleteButton';
-import Modal from './componenets/Modal';
-import TaskInput from './componenets/TaskInput';
-import TasksContainer from './componenets/TasksContainer';
+import { useState, useEffect } from 'react'
+import './App.css'
+import DeleteButton from './componenets/DeleteButton'
+import Modal from './componenets/Modal'
+import TaskInput from './componenets/TaskInput'
+import TasksContainer from './componenets/TasksContainer'
 
 function App() {
 
   const [tasks, setTasks] = useState([])
 
   const [showModal, setShowModal] = useState(false)
-
-  // useEffect(() => {
-  //   localStorage.setItem('tasks', JSON.stringify(tasks))
-  // }, [tasks])
 
   useEffect(() => {
     let locals = JSON.parse(localStorage.getItem('tasks')) || []
@@ -28,15 +24,20 @@ function App() {
     localStorage.setItem('tasks', JSON.stringify(tempTasks))
   }
 
-  
-  const deleteTasks = (btnClicked) => {
-    if (btnClicked === 'deleteAll') {
+  const deleteAllTasks = () => {
+    setShowModal(false)
       setTasks([])
       localStorage.setItem('tasks', '[]')
+  }
+
+  const deleteTasks = (btnClicked) => {
+    if (btnClicked === 'deleteAll') {
+      setShowModal(true)
+    
     } else {
       let updated = []
       tasks.forEach(task => !task.isCompleted && updated.push(task))
-      setTasks(updated);
+      setTasks(updated)
       localStorage.setItem('tasks', JSON.stringify(updated))
     }
   }
@@ -49,15 +50,15 @@ function App() {
 
   return (
     <div className="App">
-      <div id="tasksContainer" className="p-6 h-90 max-w-sm mx-auto bg-gray-500 rounded-xl shadow-md items-center space-x-4" >
+      <div id="tasksContainer" className="p-6 h-90 max-w-sm mx-auto mt-3 rounded-xl shadow-md items-center space-x-4" >
         <h1>My Tasks List</h1>
         <TaskInput addTask={addTask} />
         <DeleteButton showModal={setShowModal} deleteTasks={deleteTasks} />
         <TasksContainer completeTask={completeTask} tasks={tasks} />
-        { (showModal) ? <Modal hideModal={setShowModal}/> : null }
+        { (showModal) ? <Modal delete={deleteAllTasks} hideModal={setShowModal}/> : null }
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

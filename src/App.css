@@ -9,6 +9,10 @@
   }
 }
 
+#tasksContainer {
+  background-color: rgb(242,242,242);  
+}
+/*  */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
