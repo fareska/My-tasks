@@ -1,4 +1,4 @@
-import {ADD_TASK, DELETE_ALL, DELETE_COMPLETED, DELETE_TASK, COMPLETE_TASK, SHOW_MODAL, HIDE_MODAL} from '../actionCreators/actionTypes'
+import {ADD_TASK, DELETE_ALL, DELETE_COMPLETED, DELETE_TASK, COMPLETE_TASK} from '../actionCreators/actionTypes'
 let tasksIdCounter = 1
 
 const reducer = (state = [], action) => {

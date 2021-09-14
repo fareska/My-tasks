@@ -1,4 +1,14 @@
+import { useDispatch } from "react-redux"
+import { actionCreators } from '../state/index'
+
+
 export default function Modal(props) {
+  const dispatch = useDispatch()
+  const handleOkClick = () => {
+    dispatch(actionCreators.deleteAllTasks())
+    dispatch(actionCreators.hideModal())
+  }
+
   return (
     <div
       className="fixed z-10 inset-0 overflow-y-auto"
@@ -57,14 +67,15 @@ export default function Modal(props) {
             <button
               type="button"
               className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 sm:ml-3 sm:w-auto sm:text-sm"
-            onClick={props.delete}
+            onClick={handleOkClick}
             >
               Ok
             </button>
             <button
               type="button"
               className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-              onClick={() => props.hideModal(false)}
+              onClick={() => dispatch(actionCreators.hideModal())}
+              // onClick={() => props.hideModal(false)}
            >
               Cancel
             </button>
