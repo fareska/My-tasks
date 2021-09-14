@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { actionCreators } from '../state/index'
+
 export default function TaskInput(props) {
 
+    const actions = bindActionCreators(actionCreators, useDispatch())
+
     const [inputVal, setInputVal] = useState('')
-
-    const handleInput = (e) => setInputVal(e.target.value)
-
     const isValidInput = () => inputVal.length > 0 ? true : false
-
 
     const buttonHandler = () => {
         if (isValidInput()) {
-            props.addTask(inputVal)
+            // props.addTask(inputVal)
+            actions.addTask(inputVal)
             setInputVal('')
         } else {
             alert('input not valid')

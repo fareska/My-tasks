@@ -1,32 +1,27 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { actionCreators } from '../state/index'
 
-const styles = {
-    button: {
-        // width:'200px',
-        // border: '2px solid black'
-    }
-}
-
-export default function DeleteButton(props) {
-
+const  DeleteButton = () => {
+    const dispatch = useDispatch()
     return (
         <div id="buttonsContainer" className="flex" >
             <button
-                style={styles.button}
                 className="bg-red-400 w-40 hover:bg-red-600 rounded p-1 m-2 ml-0"
                 name="deleteAll"
-                onClick={(e) => props.deleteTasks(e.target.name)}
+                onClick={(e) => dispatch(actionCreators.deleteAllTasks(e.target.name))}
             >
                 Delete All
             </button>
             <button
-                style={styles.button}
                 className="bg-red-400 w-40 hover:bg-red-600 rounded m-2"
                 name="deleteCompleted"
-                onClick={(e) => props.deleteTasks(e.target.name)}
+                onClick={() => dispatch(actionCreators.deleteCompletedTasks())}
             >
                 Delete Completed
             </button>
         </div>
     )
 }
+
+export default DeleteButton
